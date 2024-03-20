@@ -1,0 +1,10 @@
+id: no-await-in-promise-all-custom
+language: typescript
+description: Disallows using `await` inside `Promise.all` because it will not work as expected.
+rule:
+  pattern: await $A
+  inside:
+    pattern: Promise.all($_)
+    stopBy:
+      not: { any: [{kind: array}, {kind: arguments}] }
+fix: $A
